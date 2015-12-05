@@ -1,0 +1,2 @@
+Find homework task 1 here:
+https://github.com/nikoladimitroff/DSA-Demo-Library/blob/master/homeworks/hw1-2015.md
