@@ -13,7 +13,7 @@ public class FrontBookkeeper61853 implements IFrontBookkeeper {
 		private LinkedList<Integer> soldiers;
 		private Unit currentUnitConnected;
 		
-		public Unit(){
+		public Unit() {
 			name = "";
 			unitsConnected = 0;
 			soldiers = new LinkedList<Integer>();
@@ -43,13 +43,12 @@ public class FrontBookkeeper61853 implements IFrontBookkeeper {
 		public Unit getCurrentUnitConnected() {
 			return currentUnitConnected;
 		}
-		
 	}
 	
 	private Map<String, Unit> units;
 	private String Result;
 	
-	public FrontBookkeeper61853(){
+	public FrontBookkeeper61853() {
 		units = new HashMap<String,Unit>();
 		Result = "";
 	}
@@ -182,5 +181,4 @@ public class FrontBookkeeper61853 implements IFrontBookkeeper {
 		//long total = end - start;
 		//System.out.println(total / 1000.0);
 	}
-	
 }
