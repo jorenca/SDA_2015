@@ -153,6 +153,7 @@ public class FrontBookkeeper61853 implements IFrontBookkeeper {
 	}
 	
 	public static void main(String[] args) {
+		
 		FrontBookkeeper61853 fbkeeper = new FrontBookkeeper61853();
 		String[] news = {
 			"regiment_Stoykov = [1, 2, 3]",
