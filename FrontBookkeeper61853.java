@@ -55,6 +55,7 @@ public class FrontBookkeeper61853 implements IFrontBookkeeper {
 	
 	@Override
 	public String updateFront(String[] news) {
+		
 		for (int i = 0; i < news.length; i++) {
 			String[] newsElements = news[i].split(" ");
 			if (newsElements.length == 2 && newsElements[0].equals("show")) {
