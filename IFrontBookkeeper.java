@@ -1,5 +1,5 @@
 package FrontBookkeeper;
 
 public interface IFrontBookkeeper {
-		String updateFront(String[] news);
+	String updateFront(String[] news);
 }
