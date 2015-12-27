@@ -29,13 +29,10 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 		int index;
 
 		if (command.contains("after soldier")) {
-
 			int soldierID = Integer.parseInt(command.substring(command.lastIndexOf(' ') + 1));
 			unitSecond = command.substring(command.indexOf("to") + 3, command.indexOf("after") - 1);
 			index = units.get(unitSecond).indexOf(soldierID) + 1;
-
 		} else {
-
 			unitSecond = command.substring(command.lastIndexOf(' ') + 1);
 			index = units.get(unitSecond).size();
 
@@ -109,15 +106,12 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 	}
 
 	private void die(String command) {
-
 		int low = Integer.parseInt(command.substring(command.indexOf(' ') + 1, command.indexOf('.')));
 		int high = Integer.parseInt(command.substring(command.lastIndexOf('.') + 1, command.indexOf("from") - 1));
 		String unit = command.substring(command.indexOf("from") + 5, command.indexOf("died") - 1);
 
 		LinkedList<Integer> list = new LinkedList<>();
-
 		int temp = low;
-
 		for (int i = low; i <= high; i++) {
 			list.add(temp++);
 		}
