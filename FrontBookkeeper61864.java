@@ -5,8 +5,13 @@ import java.util.Queue;
 
 public class FrontBookkeeper61864 implements IFrontBookkeeper {
 
-	private Map<String, LinkedList<Integer>> units = new HashMap<>();
-	private Map<String, String> attachments = new HashMap<>();
+	private Map<String, LinkedList<Integer>> units;
+	private Map<String, String> attachments;
+
+    public FrontBookkeeper61864() {
+        attachments = new HashMap<>();
+        units = new HashMap<>();
+    }
 
 	@Override
 	public void updateFront(String[] news) {
@@ -65,7 +70,6 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 					list.add(entry.getKey());
 				}
 			}
-
 			printAttachments(list);
 
 		} else {
