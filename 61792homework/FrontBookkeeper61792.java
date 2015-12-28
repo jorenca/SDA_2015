@@ -11,7 +11,7 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 	@Override
 	public String updateFront(String[] news) {
 		processingNews(news);
-		return "News list is empty!";
+		return null;
 	}
 
 	public void processingNews(String[] news) {
@@ -42,11 +42,15 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 		LinkedList<Integer> soldiers = new LinkedList<>();
 
 		for (String element : splitted) {
-			soldiers.add(Integer.parseInt(element));
-		}
-		units.put(separatedStrings[0], soldiers);
+			try {
+				soldiers.add(Integer.parseInt(element));
+			} catch (NumberFormatException newNumbFormEx) {
+			}
+			;
 
-		// System.out.println(units.toString());
+		}
+
+		units.put(separatedStrings[0], soldiers);
 	}
 
 	public static void unitAttachment(String newLine) {
@@ -60,7 +64,6 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 		}
 
 		removeAndConnect(separatedStrings[0], separatedStrings[1]);
-		System.out.println(partTwo.toString());
 	}
 
 	public static void unitPositionalAttachment(String newLine) {
@@ -83,15 +86,12 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 		}
 		int firstListIndex;
 		int secondListIndex;
-		for (firstListIndex = 0, secondListIndex = startIndex + 1; 
-				firstListIndex < firstList.size(); 
-					secondListIndex++, firstListIndex++) {
+		for (firstListIndex = 0, secondListIndex = startIndex + 1; firstListIndex < firstList
+				.size(); secondListIndex++, firstListIndex++) {
 			secondList.add(secondListIndex, firstList.get(firstListIndex));
 		}
 
 		removeAndConnect(separatedStrings[0], separatedStrings[1]);
-
-		System.out.println(secondList.toString());
 	}
 
 	public static void removeAndConnect(String firstString, String secondString) {
@@ -118,6 +118,7 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 				break;
 			}
 		}
+
 		int endIndex = 0;
 		for (int i = 0; i < listOfSoldiers.size(); i++) {
 			if (listOfSoldiers.get(i) == end) {
@@ -139,9 +140,6 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 				allUnits.removeAll(deadSoldiers);
 			}
 		}
-
-		System.out.println(listOfSoldiers.toString());
-		System.out.println(deadSoldiers.toString());
 	}
 
 	public static void unitDisplay(String newLine) {
@@ -183,6 +181,5 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 		LinkedList<Integer> firstList = units.get(isPart);
 		LinkedList<Integer> partOfList = units.get(newUnit);
 		firstList.removeAll(partOfList);
-
 	}
 }
