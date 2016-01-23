@@ -1,5 +1,3 @@
-package fmi.sda.homework1;
-
 import java.util.LinkedList;
 
 public class FrontBookkeeper61838 implements IFrontBookkeeper {
@@ -27,7 +25,7 @@ public class FrontBookkeeper61838 implements IFrontBookkeeper {
 				}
 	
 			}else if(currentNews.contains("died")){
-				String[] killed = newsFromFront[1].replace("..", " ").split(" "); //доста грозно
+				String[] killed = newsFromFront[1].replace("..", " ").split(" "); //Г¤Г®Г±ГІГ  ГЈГ°Г®Г§Г­Г®
 				System.out.println(newsFromFront[3]);
 					
 				army.killSoldiers(Integer.parseInt(killed[0]), Integer.parseInt(killed[1]),newsFromFront[3]);
