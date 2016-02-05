@@ -20,11 +20,37 @@ import sda.author.FrontBookkeeperAuthor;
  * 
  */
 public class Grader {
+	private static final int TIME_LIMIT = 10000; // ms
+
 	private FrontBookkeeperAuthor authorEncoder;
 
 	private static List<Class<? extends IFrontBookkeeper>> classesToBeGraded;
 
 	private List<IFrontBookkeeper> instancesToBeGraded;
+
+	private class TaskExecutor implements Runnable {
+		private final IFrontBookkeeper toTest;
+		private final String[] input;
+		public long workTime = -2;
+		public String result;
+		public Throwable thrown = null;
+
+		public TaskExecutor(IFrontBookkeeper toTest, String[] input) {
+			this.toTest = toTest;
+			this.input = input;
+		}
+
+		@Override
+		public void run() {
+			try {
+				long workStart = System.nanoTime();
+				result = toTest.updateFront(input);
+				workTime = System.nanoTime() - workStart;
+			} catch (Throwable t) {
+				thrown = t;
+			}
+		}
+	}
 
 	private static void recurseWorks(File folder,
 			List<Class<? extends IFrontBookkeeper>> result)
@@ -38,7 +64,13 @@ public class Grader {
 				String fileName = file.getName();
 				Matcher matcher = homeworkPattern.matcher(fileName);
 				if (matcher.find()) {
-					String className = fileName.replaceFirst(".java", "");
+					String absolutePath = file.getAbsolutePath();
+					int start = absolutePath.indexOf("\\src") + 5;
+					String packageLocation = absolutePath.substring(start);
+					packageLocation = packageLocation.replaceAll("\\\\", ".");
+
+					String className = packageLocation
+							.replaceFirst(".java", "");
 					System.out.println("Adding class " + className
 							+ " for grading.");
 					result.add((Class<? extends IFrontBookkeeper>) Class
@@ -54,7 +86,7 @@ public class Grader {
 			throws ClassNotFoundException {
 		List<Class<? extends IFrontBookkeeper>> result = new LinkedList<Class<? extends IFrontBookkeeper>>();
 
-		File folder = new File("./src/royalprogrammer/");
+		File folder = new File("./src/");
 		recurseWorks(folder, result);
 		return result;
 	}
@@ -93,16 +125,30 @@ public class Grader {
 
 		List<Double> results = new LinkedList<Double>();
 		for (IFrontBookkeeper work : instancesToBeGraded) {
-			long workTime = 0;
-			String result = null;
+			// System.out.println("Testing " + work.getClass().getName());
+			TaskExecutor worker = new TaskExecutor(work, lines);
+
 			try {
-				long workStart = System.nanoTime();
-				result = work.updateFront(lines);
-				workTime = System.nanoTime() - workStart;
+				Thread t = new Thread(worker);
+				t.start();
+
+				for (int i = 0; i < TIME_LIMIT / 1000; i++) {
+					Thread.sleep(1000);
+					if (!t.isAlive()) {
+						break;
+					}
+				}
+				if (t.isAlive()) {
+					t.stop();
+				}
+
 			} catch (Throwable t) {
-				workTime = -1;
+				t.printStackTrace();
 			}
+
 			System.out.print(work.getClass().getName() + " result: ");
+			long workTime = worker.workTime;
+			String result = worker.result;
 			if (workTime > 0) {
 				boolean correct = authorResult.replaceAll("\\s+", "").equals(
 						result != null ? result.replaceAll("\\s+", "") : null);
@@ -122,7 +168,12 @@ public class Grader {
 				}
 			} else {
 				results.add(0.0);
-				System.out.println("Threw an exception.");
+				if (worker.thrown != null) {
+					System.out.println("Threw an exception. ("
+							+ worker.thrown.getClass() + ")");
+				} else {
+					System.out.println("Time limit.");
+				}
 			}
 
 		}

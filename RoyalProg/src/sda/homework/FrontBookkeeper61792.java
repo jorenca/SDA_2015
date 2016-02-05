@@ -63,7 +63,7 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 		}
 
 		removeAndConnect(separatedStrings[0], separatedStrings[1]);
-		System.out.println(partTwo.toString());
+		// System.out.println(partTwo.toString());
 	}
 
 	public static void unitPositionalAttachment(String newLine) {
@@ -93,7 +93,7 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 
 		removeAndConnect(separatedStrings[0], separatedStrings[1]);
 
-		System.out.println(secondList.toString());
+		// System.out.println(secondList.toString());
 	}
 
 	public static void removeAndConnect(String firstString, String secondString) {
@@ -142,14 +142,14 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 			}
 		}
 
-		System.out.println(listOfSoldiers.toString());
-		System.out.println(deadSoldiers.toString());
+		// System.out.println(listOfSoldiers.toString());
+		// System.out.println(deadSoldiers.toString());
 	}
 
 	public static void unitDisplay(String newLine) {
 		String[] separatedStrings = newLine.split(" ");
 		LinkedList<Integer> soldiers = units.get(separatedStrings[1]);
-		System.out.println(soldiers.toString());
+		// System.out.println(soldiers.toString());
 	}
 
 	public static void soldierDisplay(String newLine) {
@@ -167,7 +167,7 @@ public class FrontBookkeeper61792 implements IFrontBookkeeper {
 		String brigade = brigades.toString();
 		brigade = brigade.replace("[", "");
 		brigade = brigade.replace("]", "");
-		System.out.println(brigade);
+		// System.out.println(brigade);
 	}
 
 	public static boolean containsPartOfList(LinkedList<Integer> firstList,

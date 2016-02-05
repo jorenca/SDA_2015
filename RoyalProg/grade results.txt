@@ -1,0 +1,101 @@
+Adding class sda.homework.FrontBookkeeper61792 for grading.
+Adding class sda.homework.FrontBookkeeper61802 for grading.
+Adding class sda.homework.FrontBookkeeper61807 for grading.
+Adding class sda.homework.FrontBookkeeper61817 for grading.
+Adding class sda.homework.FrontBookkeeper61833 for grading.
+Adding class sda.homework.FrontBookkeeper61838 for grading.
+Adding class sda.homework.FrontBookkeeper61843 for grading.
+Adding class sda.homework.FrontBookkeeper61853 for grading.
+Adding class sda.homework.FrontBookkeeper61864 for grading.
+Adding class sda.homework.FrontBookkeeper61869 for grading.
+Adding class sda.homework.sol61797.FrontBookkeeper61797 for grading.
+
+
+=== Testing deaths.txt ===
+Author result: 466ms
+sda.homework.FrontBookkeeper61792 result: Time limit.
+sda.homework.FrontBookkeeper61802 result: Threw an exception. (class java.lang.ThreadDeath)
+sda.homework.FrontBookkeeper61807 result: 0,05277 (time 8823ms)
+sda.homework.FrontBookkeeper61817 result: Threw an exception. (class java.lang.IndexOutOfBoundsException)
+sda.homework.FrontBookkeeper61833 result: Threw an exception. (class java.lang.ArrayIndexOutOfBoundsException)
+sda.homework.FrontBookkeeper61838 result: 0,12454 (time 3739ms)
+sda.homework.FrontBookkeeper61843 result: Threw an exception. (class java.lang.NullPointerException)
+sda.homework.FrontBookkeeper61853 result: 0,55541 (time 838ms)
+sda.homework.FrontBookkeeper61864 result: Threw an exception. (class java.lang.AbstractMethodError)
+sda.homework.FrontBookkeeper61869 result: 0,074 (time 6292ms)
+sda.homework.sol61797.FrontBookkeeper61797 result: Time limit.
+
+
+=== Testing interlist_removal.txt ===
+Author result: 1052ms
+sda.homework.FrontBookkeeper61792 result: Threw an exception. (class java.lang.NumberFormatException)
+sda.homework.FrontBookkeeper61802 result: 0,13202 (time 7969ms)
+sda.homework.FrontBookkeeper61807 result: 0,27813 (time 3782ms)
+sda.homework.FrontBookkeeper61817 result: Time limit.
+sda.homework.FrontBookkeeper61833 result: Threw an exception. (class java.lang.ArrayIndexOutOfBoundsException)
+sda.homework.FrontBookkeeper61838 result: Time limit.
+sda.homework.FrontBookkeeper61843 result: Time limit.
+sda.homework.FrontBookkeeper61853 result: Time limit.
+sda.homework.FrontBookkeeper61864 result: Threw an exception. (class java.lang.AbstractMethodError)
+sda.homework.FrontBookkeeper61869 result: 0,17052 (time 6169ms)
+sda.homework.sol61797.FrontBookkeeper61797 result: Time limit.
+
+
+=== Testing juggling.txt ===
+Author result: 36ms
+sda.homework.FrontBookkeeper61792 result: Threw an exception. (class java.lang.NumberFormatException)
+sda.homework.FrontBookkeeper61802 result: Time limit.
+sda.homework.FrontBookkeeper61807 result: Threw an exception. (class java.lang.ThreadDeath)
+sda.homework.FrontBookkeeper61817 result: Time limit.
+sda.homework.FrontBookkeeper61833 result: Time limit.
+sda.homework.FrontBookkeeper61838 result: Time limit.
+sda.homework.FrontBookkeeper61843 result: Time limit.
+sda.homework.FrontBookkeeper61853 result: Time limit.
+sda.homework.FrontBookkeeper61864 result: Threw an exception. (class java.lang.AbstractMethodError)
+sda.homework.FrontBookkeeper61869 result: Time limit.
+sda.homework.sol61797.FrontBookkeeper61797 result: Incorrect. (time 4037ms)
+
+
+=== Testing positional_attachment.txt ===
+Author result: 400ms
+sda.homework.FrontBookkeeper61792 result: Threw an exception. (class java.lang.NumberFormatException)
+sda.homework.FrontBookkeeper61802 result: Time limit.
+sda.homework.FrontBookkeeper61807 result: 0,15006 (time 2666ms)
+sda.homework.FrontBookkeeper61817 result: Incorrect. (time 873ms)
+sda.homework.FrontBookkeeper61833 result: Incorrect. (time 973ms)
+sda.homework.FrontBookkeeper61838 result: Incorrect. (time 336ms)
+sda.homework.FrontBookkeeper61843 result: 0,71605 (time 559ms)
+sda.homework.FrontBookkeeper61853 result: Incorrect. (time 1375ms)
+sda.homework.FrontBookkeeper61864 result: Threw an exception. (class java.lang.AbstractMethodError)
+sda.homework.FrontBookkeeper61869 result: Incorrect. (time 8104ms)
+sda.homework.sol61797.FrontBookkeeper61797 result: Time limit.
+
+
+=== Testing show_soldiers.txt ===
+Author result: 347ms
+sda.homework.FrontBookkeeper61792 result: Threw an exception. (class java.lang.NumberFormatException)
+sda.homework.FrontBookkeeper61802 result: Time limit.
+sda.homework.FrontBookkeeper61807 result: Incorrect. (time 526ms)
+sda.homework.FrontBookkeeper61817 result: Threw an exception. (class java.lang.ThreadDeath)
+sda.homework.FrontBookkeeper61833 result: Time limit.
+sda.homework.FrontBookkeeper61838 result: Threw an exception. (class java.lang.ThreadDeath)
+sda.homework.FrontBookkeeper61843 result: Time limit.
+sda.homework.FrontBookkeeper61853 result: Time limit.
+sda.homework.FrontBookkeeper61864 result: Threw an exception. (class java.lang.AbstractMethodError)
+sda.homework.FrontBookkeeper61869 result: Time limit.
+sda.homework.sol61797.FrontBookkeeper61797 result: Time limit.
+
+
+
+=== FINAL RESULTS ===
+sda.homework.FrontBookkeeper61792: 0
+sda.homework.FrontBookkeeper61802: 0,0264
+sda.homework.FrontBookkeeper61807: 0,09619
+sda.homework.FrontBookkeeper61817: 0
+sda.homework.FrontBookkeeper61833: 0
+sda.homework.FrontBookkeeper61838: 0,02491
+sda.homework.FrontBookkeeper61843: 0,14321
+sda.homework.FrontBookkeeper61853: 0,11108
+sda.homework.FrontBookkeeper61864: 0
+sda.homework.FrontBookkeeper61869: 0,0489
+sda.homework.sol61797.FrontBookkeeper61797: 0

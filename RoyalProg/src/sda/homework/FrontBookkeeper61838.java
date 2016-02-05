@@ -116,7 +116,7 @@ public class FrontBookkeeper61838 implements IFrontBookkeeper {
 			} else if (currentNews.contains("died")) {
 				String[] killed = newsFromFront[1].replace("..", " ")
 						.split(" "); // äîñòà ãðîçíî
-				System.out.println(newsFromFront[3]);
+				// System.out.println(newsFromFront[3]);
 
 				army.killSoldiers(Integer.parseInt(killed[0]),
 						Integer.parseInt(killed[1]), newsFromFront[3]);
