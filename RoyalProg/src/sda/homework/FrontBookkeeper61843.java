@@ -1,3 +1,4 @@
+package sda.homework;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import sda.grading.IFrontBookkeeper;
 
 public class FrontBookkeeper61843 implements IFrontBookkeeper {
 
@@ -37,7 +40,8 @@ public class FrontBookkeeper61843 implements IFrontBookkeeper {
 				// System.out.println(showDivision(news[i]));
 				sb.append(showDivision(news[i]));
 				sb.append("\n");
-			} else if (news[i].contains("attached to") && news[i].contains("after soldier")) {
+			} else if (news[i].contains("attached to")
+					&& news[i].contains("after soldier")) {
 				attachAfterSoldier(news[i]);
 				continue;
 			} else if (news[i].contains("attached to")) {
@@ -105,7 +109,7 @@ public class FrontBookkeeper61843 implements IFrontBookkeeper {
 		// System.out.println(unit2);
 		// System.out.println(soldier);
 		if (attachedTo.get(unit2) == null) {
-			attachedTo.put(unit2, new ArrayList<>());
+			attachedTo.put(unit2, new ArrayList<String>());
 			attachedTo.get(unit2).add(unit1);
 		}
 		attachedTo.get(unit2).add(unit1);
@@ -126,12 +130,13 @@ public class FrontBookkeeper61843 implements IFrontBookkeeper {
 	}
 
 	private void attachToDivision(String attachLine) {
-		String unit1 = attachLine.substring(0, attachLine.indexOf("attached") - 1);
+		String unit1 = attachLine.substring(0,
+				attachLine.indexOf("attached") - 1);
 		String unit2 = attachLine.substring(attachLine.lastIndexOf(" ") + 1);
 		// System.out.println(unit1);
 		// System.out.println(unit2);
 		if (attachedTo.get(unit2) == null) {
-			attachedTo.put(unit2, new ArrayList<>());
+			attachedTo.put(unit2, new ArrayList<String>());
 			attachedTo.get(unit2).add(unit1);
 		}
 		attachedTo.get(unit2).add(unit1);
@@ -151,7 +156,8 @@ public class FrontBookkeeper61843 implements IFrontBookkeeper {
 	}
 
 	private String showAllDivisionsOfSoldier(String soldierLine) {
-		String soldier = soldierLine.substring(soldierLine.lastIndexOf(' ') + 1);
+		String soldier = soldierLine
+				.substring(soldierLine.lastIndexOf(' ') + 1);
 		StringBuilder sb = new StringBuilder();
 		for (Entry<String, List<String>> entry : regiments.entrySet()) {
 			List<String> division = entry.getValue();
@@ -164,16 +170,19 @@ public class FrontBookkeeper61843 implements IFrontBookkeeper {
 	}
 
 	private String showDivision(String showDivLine) {
-		String divisionName = showDivLine.substring(showDivLine.indexOf(' ') + 1);
+		String divisionName = showDivLine
+				.substring(showDivLine.indexOf(' ') + 1);
 		return regiments.get(divisionName).toString();
 	}
 
 	private void assignDivision(String assigmentLine) {
 		// regiment_Stoykov = [1, 2, 3]
-		String regiment = assigmentLine.substring(0, assigmentLine.indexOf('=') - 1);
-		String arrayNumbers = assigmentLine.substring(assigmentLine.indexOf('[') + 1, assigmentLine.indexOf(']'));
+		String regiment = assigmentLine.substring(0,
+				assigmentLine.indexOf('=') - 1);
+		String arrayNumbers = assigmentLine.substring(
+				assigmentLine.indexOf('[') + 1, assigmentLine.indexOf(']'));
 		if (arrayNumbers.length() == 0) {
-			regiments.put(regiment, new ArrayList<>());
+			regiments.put(regiment, new ArrayList<String>());
 			return;
 		}
 
@@ -184,14 +193,25 @@ public class FrontBookkeeper61843 implements IFrontBookkeeper {
 
 	public static void main(String[] args) {
 		IFrontBookkeeper book = new FrontBookkeeper61843();
-		String[] news = { "regiment_Stoykov = [1, 2, 3]", "show regiment_Stoykov", "regiment_Chaushev = [13]",
-				"show soldier 13", "division_Dimitroff = []", "regiment_Stoykov attached to division_Dimitroff",
-				"regiment_Chaushev attached to division_Dimitroff", "show division_Dimitroff", "show soldier 13",
-				"brigade_Ignatov = []", "regiment_Stoykov attached to brigade_Ignatov",
-				"regiment_Chaushev attached to brigade_Ignatov after soldier 3", "show brigade_Ignatov",
-				"show division_Dimitroff", "brigade_Ignatov attached to division_Dimitroff", "show division_Dimitroff",
-				"soldiers 2..3 from division_Dimitroff died heroically", "show regiment_Stoykov",
-				"show brigade_Ignatov", "show division_Dimitroff" };
+		String[] news = {
+				"regiment_Stoykov = [1, 2, 3]",
+				"show regiment_Stoykov",
+				"regiment_Chaushev = [13]",
+				"show soldier 13",
+				"division_Dimitroff = []",
+				"regiment_Stoykov attached to division_Dimitroff",
+				"regiment_Chaushev attached to division_Dimitroff",
+				"show division_Dimitroff",
+				"show soldier 13",
+				"brigade_Ignatov = []",
+				"regiment_Stoykov attached to brigade_Ignatov",
+				"regiment_Chaushev attached to brigade_Ignatov after soldier 3",
+				"show brigade_Ignatov", "show division_Dimitroff",
+				"brigade_Ignatov attached to division_Dimitroff",
+				"show division_Dimitroff",
+				"soldiers 2..3 from division_Dimitroff died heroically",
+				"show regiment_Stoykov", "show brigade_Ignatov",
+				"show division_Dimitroff" };
 		// double start = System.currentTimeMillis();
 		System.out.println(book.updateFront(news));
 		// System.out.println((System.currentTimeMillis() - start) / 1000.0);

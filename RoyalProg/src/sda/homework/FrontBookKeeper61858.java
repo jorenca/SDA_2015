@@ -1,10 +1,15 @@
+package sda.homework;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
+
 import javax.management.openmbean.InvalidKeyException;
 
-public class FrontBookKeeper61858 implements IFrontBookKeeper {
+import sda.grading.IFrontBookkeeper;
+
+public class FrontBookKeeper61858 implements IFrontBookkeeper {
 
 	private List<String> soldiers; // single soldiers
 	private List<String> units; // units
@@ -38,7 +43,8 @@ public class FrontBookKeeper61858 implements IFrontBookKeeper {
 		StringBuilder result = new StringBuilder();
 		for (String newString : news) {
 			if (newString.contains(" = ")) {
-				StringTokenizer splitted = new StringTokenizer(newString, ",[] =");
+				StringTokenizer splitted = new StringTokenizer(newString,
+						",[] =");
 				String name = null;
 				List<Integer> indexes = new ArrayList<>();
 				while (splitted.hasMoreTokens()) {
@@ -57,9 +63,11 @@ public class FrontBookKeeper61858 implements IFrontBookKeeper {
 					unknown.add(name);
 				}
 				archive.put(name, indexes);
-			} else if (newString.contains(" attached to ") && !newString.contains(" after ")) {
+			} else if (newString.contains(" attached to ")
+					&& !newString.contains(" after ")) {
 				newString = newString.replace(" attached to ", " ");
-				StringTokenizer splitted = new StringTokenizer(newString, ",[] =");
+				StringTokenizer splitted = new StringTokenizer(newString,
+						",[] =");
 				String unit1 = splitted.nextToken();
 				String unit2 = splitted.nextToken();
 				/*
@@ -71,7 +79,8 @@ public class FrontBookKeeper61858 implements IFrontBookKeeper {
 				 * (units.contains(unit2) || unknown.contains(unit2))))) { throw
 				 * new InvalidKeyException("Invalid operation!"); }
 				 */
-				if (archive.keySet().contains(unit1) && archive.keySet().contains(unit2)) {
+				if (archive.keySet().contains(unit1)
+						&& archive.keySet().contains(unit2)) {
 					archive.get(unit2).addAll(archive.get(unit1));
 				} else {
 					throw new InvalidKeyException("Invalid key!");
@@ -84,20 +93,27 @@ public class FrontBookKeeper61858 implements IFrontBookKeeper {
 					attachments.put(unit2, attached);
 				}
 				for (String string : attachments.keySet()) {
-					if (!unit2.equals(string) && attachments.get(string).contains(unit1)) {
+					if (!unit2.equals(string)
+							&& attachments.get(string).contains(unit1)) {
 						archive.get(string).removeAll(archive.get(unit1));
 						attachments.get(string).remove(unit1);
 					}
 				}
-			} else if (newString.contains(" attached to ") && newString.contains(" after ")) {
+			} else if (newString.contains(" attached to ")
+					&& newString.contains(" after ")) {
 				newString = newString.replace(" attached to ", " ");
 				newString = newString.replace(" after soldier ", " ");
-				StringTokenizer splitted = new StringTokenizer(newString, ",[] =");
+				StringTokenizer splitted = new StringTokenizer(newString,
+						",[] =");
 				String unit1 = splitted.nextToken();
 				String unit2 = splitted.nextToken();
 				String id = splitted.nextToken();
-				if (archive.keySet().contains(unit1) && archive.keySet().contains(unit2) && isNumber(id)) {
-					archive.get(unit2).addAll(archive.get(unit2).indexOf(Integer.parseInt(id)) + 1, archive.get(unit1));
+				if (archive.keySet().contains(unit1)
+						&& archive.keySet().contains(unit2) && isNumber(id)) {
+					archive.get(unit2)
+							.addAll(archive.get(unit2).indexOf(
+									Integer.parseInt(id)) + 1,
+									archive.get(unit1));
 				} else {
 					throw new InvalidKeyException("Invalid key!");
 				}
@@ -109,7 +125,8 @@ public class FrontBookKeeper61858 implements IFrontBookKeeper {
 					attachments.put(unit2, attached);
 				}
 				for (String string : attachments.keySet()) {
-					if (!unit2.equals(string) && attachments.get(string).contains(unit1)) {
+					if (!unit2.equals(string)
+							&& attachments.get(string).contains(unit1)) {
 						archive.get(string).removeAll(archive.get(unit1));
 						attachments.get(string).remove(unit1);
 					}
@@ -122,8 +139,10 @@ public class FrontBookKeeper61858 implements IFrontBookKeeper {
 				int start = 0, end = 0;
 				for (String string : splitted) {
 					if (string.contains(".")) {
-						start = Integer.parseInt(string.substring(0, string.indexOf('.')));
-						end = Integer.parseInt(string.substring(string.lastIndexOf('.') + 1, string.length()));
+						start = Integer.parseInt(string.substring(0,
+								string.indexOf('.')));
+						end = Integer.parseInt(string.substring(
+								string.lastIndexOf('.') + 1, string.length()));
 					} else if (archive.keySet().contains(string)) {
 						for (int i = start; i <= end; i++) {
 							if (archive.get(string).contains(i)) {
@@ -140,16 +159,17 @@ public class FrontBookKeeper61858 implements IFrontBookKeeper {
 						}
 					}
 				}
-			} else if (newString.contains("show ") && !newString.contains("show soldier")) {
+			} else if (newString.contains("show ")
+					&& !newString.contains("show soldier")) {
 				newString = newString.replace("show ", "");
-				result.append(archive.get(newString).toString()+"\n");
+				result.append(archive.get(newString).toString() + "\n");
 			} else if (newString.contains("show soldier ")) {
 				newString = newString.replace("show soldier ", "");
 				if (isNumber(newString)) {
 					int id = Integer.parseInt(newString);
 					for (String string : archive.keySet()) {
 						if (archive.get(string).contains(id)) {
-							result.append(string+",");
+							result.append(string + ",");
 						}
 					}
 					result.append("\n");

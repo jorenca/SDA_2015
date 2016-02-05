@@ -1,17 +1,21 @@
+package sda.homework;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+
+import sda.grading.IFrontBookkeeper;
 
 public class FrontBookkeeper61864 implements IFrontBookkeeper {
 
 	private Map<String, LinkedList<Integer>> units;
 	private Map<String, String> attachments;
 
-    public FrontBookkeeper61864() {
-        attachments = new HashMap<>();
-        units = new HashMap<>();
-    }
+	public FrontBookkeeper61864() {
+		attachments = new HashMap<>();
+		units = new HashMap<>();
+	}
 
 	@Override
 	public void updateFront(String[] news) {
@@ -34,8 +38,10 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 		int index;
 
 		if (command.contains("after soldier")) {
-			int soldierID = Integer.parseInt(command.substring(command.lastIndexOf(' ') + 1));
-			unitSecond = command.substring(command.indexOf("to") + 3, command.indexOf("after") - 1);
+			int soldierID = Integer.parseInt(command.substring(command
+					.lastIndexOf(' ') + 1));
+			unitSecond = command.substring(command.indexOf("to") + 3,
+					command.indexOf("after") - 1);
 			index = units.get(unitSecond).indexOf(soldierID) + 1;
 		} else {
 			unitSecond = command.substring(command.lastIndexOf(' ') + 1);
@@ -65,7 +71,8 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 			int soldierID = Integer.parseInt(command.substring(index));
 			LinkedList<String> list = new LinkedList<>();
 
-			for (Map.Entry<String, LinkedList<Integer>> entry : units.entrySet()) {
+			for (Map.Entry<String, LinkedList<Integer>> entry : units
+					.entrySet()) {
 				if (entry.getValue().contains(soldierID)) {
 					list.add(entry.getKey());
 				}
@@ -99,7 +106,8 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 		if (arrayBegin == arrayEnd) {
 			units.put(name, soldiersList);
 		} else {
-			String[] soldiersArray = command.substring(arrayBegin, arrayEnd).split("[ ,]+");
+			String[] soldiersArray = command.substring(arrayBegin, arrayEnd)
+					.split("[ ,]+");
 
 			for (int i = 0; i < soldiersArray.length; i++) {
 				soldiersList.add(Integer.parseInt(soldiersArray[i]));
@@ -110,9 +118,12 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 	}
 
 	private void die(String command) {
-		int low = Integer.parseInt(command.substring(command.indexOf(' ') + 1, command.indexOf('.')));
-		int high = Integer.parseInt(command.substring(command.lastIndexOf('.') + 1, command.indexOf("from") - 1));
-		String unit = command.substring(command.indexOf("from") + 5, command.indexOf("died") - 1);
+		int low = Integer.parseInt(command.substring(command.indexOf(' ') + 1,
+				command.indexOf('.')));
+		int high = Integer.parseInt(command.substring(
+				command.lastIndexOf('.') + 1, command.indexOf("from") - 1));
+		String unit = command.substring(command.indexOf("from") + 5,
+				command.indexOf("died") - 1);
 
 		LinkedList<Integer> list = new LinkedList<>();
 		int temp = low;
@@ -138,14 +149,25 @@ public class FrontBookkeeper61864 implements IFrontBookkeeper {
 	}
 
 	public static void main(String[] args) {
-		String[] news = { "regiment_Stoykov = [1, 2, 3]", "show regiment_Stoykov", "regiment_Chaushev = [13]",
-				"show soldier 13", "division_Dimitroff = []", "regiment_Stoykov attached to division_Dimitroff",
-				"regiment_Chaushev attached to division_Dimitroff", "show division_Dimitroff", "show soldier 13",
-				"brigade_Ignatov = []", "regiment_Stoykov attached to brigade_Ignatov",
-				"regiment_Chaushev attached to brigade_Ignatov after soldier 3", "show brigade_Ignatov",
-				"show division_Dimitroff", "brigade_Ignatov attached to division_Dimitroff", "show division_Dimitroff",
-				"soldiers 2..3 from division_Dimitroff died heroically ", "show regiment_Stoykov",
-				"show brigade_Ignatov", "show division_Dimitroff" };
+		String[] news = {
+				"regiment_Stoykov = [1, 2, 3]",
+				"show regiment_Stoykov",
+				"regiment_Chaushev = [13]",
+				"show soldier 13",
+				"division_Dimitroff = []",
+				"regiment_Stoykov attached to division_Dimitroff",
+				"regiment_Chaushev attached to division_Dimitroff",
+				"show division_Dimitroff",
+				"show soldier 13",
+				"brigade_Ignatov = []",
+				"regiment_Stoykov attached to brigade_Ignatov",
+				"regiment_Chaushev attached to brigade_Ignatov after soldier 3",
+				"show brigade_Ignatov", "show division_Dimitroff",
+				"brigade_Ignatov attached to division_Dimitroff",
+				"show division_Dimitroff",
+				"soldiers 2..3 from division_Dimitroff died heroically ",
+				"show regiment_Stoykov", "show brigade_Ignatov",
+				"show division_Dimitroff" };
 		FrontBookkeeper61864 f = new FrontBookkeeper61864();
 		f.updateFront(news);
 	}

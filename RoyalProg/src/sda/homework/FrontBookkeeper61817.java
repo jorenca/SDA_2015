@@ -1,17 +1,17 @@
-package Main;
+package sda.homework;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import sda.grading.IFrontBookkeeper;
 
 public class FrontBookkeeper61817 implements IFrontBookkeeper {
 
+	@Override
 	public String updateFront(String[] news) {
 
 		HashMap<String, SoldierCollection> objectsMap = new HashMap<String, SoldierCollection>();
-		StringBuilder realOutput=new StringBuilder();
+		StringBuilder realOutput = new StringBuilder();
 		for (int i = 0; i < news.length; i++) {
 
 			// /gets =
@@ -70,19 +70,22 @@ public class FrontBookkeeper61817 implements IFrontBookkeeper {
 				int second = Integer.parseInt(soldiers[1]);
 				if (first != second) {
 					for (int j = first; j <= second; j++) {
-						objectsMap.get(command[3]).getSoldiers().remove(new Integer(j));
+						objectsMap.get(command[3]).getSoldiers()
+								.remove(new Integer(j));
 					}
 				} else {
 					objectsMap.get(command[3]).getSoldiers().remove(first);
 				}
-				removeDiedSoldiers(objectsMap,command[3],first,second);
+				removeDiedSoldiers(objectsMap, command[3], first, second);
 			}
 
 		}
 		return realOutput.toString();
 	}
-	
-	private void removeDiedSoldiers(HashMap<String, SoldierCollection> objectsMap,String unitName,int first, int second){
+
+	private void removeDiedSoldiers(
+			HashMap<String, SoldierCollection> objectsMap, String unitName,
+			int first, int second) {
 		Iterator iterator = objectsMap.keySet().iterator();
 		while (iterator.hasNext()) {
 			String key = iterator.next().toString();
@@ -95,7 +98,7 @@ public class FrontBookkeeper61817 implements IFrontBookkeeper {
 				} else {
 					value.getSoldiers().remove(first);
 				}
-				removeDiedSoldiers(objectsMap,key,first,second);
+				removeDiedSoldiers(objectsMap, key, first, second);
 			}
 		}
 	}
